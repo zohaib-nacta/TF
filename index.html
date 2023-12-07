@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Entry Portal</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  form {
+    max-width: 400px;
+    margin: auto;
+  }
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  /* Add this rule for the title tag */
+  title {
+    display: block;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+<h1>Data Entry Portal</h1>
+  <form id="dataForm">
+    <label for="date">Date:</label>
+    <input type="text" id="date" name="Date" required>
+
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="Country" required>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="City" required>
+
+    <label for="organization">Terrorist Organization:</label>
+    <input type="text" id="organization" name="Terrorist_Organization" required>
+
+    <label for="financing">Organizational or Operational Financing:</label>
+    <input type="text" id="financing" name="Organizational_or_Operational_Financing" required>
+
+    <label for="incident">Incident:</label>
+    <input type="text" id="incident" name="Incident" required>
+
+    <label for="channel">Channel Used:</label>
+    <input type="text" id="channel" name="Channel_Used" required>
+
+    <label for="formal">Formal or Informal:</label>
+    <input type="text" id="formal" name="Formal_or_Informal" required>
+
+    <label for="source">TF Source:</label>
+    <input type="text" id="source" name="TF_Source" required>
+
+    <label for="remarks">Remarks:</label>
+    <input type="text" id="remarks" name="Remarks" required>
+
+    <label for="reference">Reference:</label>
+    <input type="text" id="reference" name="Reference" required>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById("dataForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      submitForm();
+    });
+
+    function submitForm() {
+      var formData = new FormData(document.getElementById("dataForm"));
+      fetch('https://script.google.com/macros/s/AKfycbyl2_sbN0WusTVqrOycTS8ZXVcbog5nRJLE35-Gp7ueNZa0Qtded1BPFKbZQXTe2JOQ/exec', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        alert('Data submitted successfully!');
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+    }
+  </script>
+</body>
+</html>
